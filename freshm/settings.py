@@ -139,21 +139,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-if os.environ.get('ENV') == 'PRODUCTION':
-    
-    STATIC_URL = '/static/'
-    STATICFILES_DIRS = [BASE_DIR/'static']
-    STATIC_ROOT = BASE_DIR/'staticfiles'
-    MEDIA_ROOT = BASE_DIR/"media/"
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR/'static']
+STATIC_ROOT = BASE_DIR/'staticfiles'
+MEDIA_ROOT = BASE_DIR/"media/"
 
 # Extra places for collectstatic to find static files.
 
-    STATICFILES_STORAGE ='whitenoise.storage.CompresseManifestStaticFilesStorage'
-    MEDIA_URL = '/media/'
-    django_heroku.settings(locals())
-    db_from_env = dj_database_url.config(conn_max_age=500)
+STATICFILES_STORAGE ='whitenoise.storage.CompresseManifestStaticFilesStorage'
+MEDIA_URL = '/media/'
+django_heroku.settings(locals())
+db_from_env = dj_database_url.config(conn_max_age=500)
 
-    DATABASES['default'].update(db_from_env)
+DATABASES['default'].update(db_from_env)
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
