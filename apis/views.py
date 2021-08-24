@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAdminUser
 from django.contrib.auth.models import User
 from main import models
 from . import serializers
+from rest_framework import generics
 
 
 class UserRecordView(APIView):
