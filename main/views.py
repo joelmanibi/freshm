@@ -107,8 +107,7 @@ def menuDetail(request, slug):
 
     if request.user.client:
         produit = Produit.objects.filter(slug=slug).first()
-        panier_produits = Commande.objects.filter(client=request.user.client,statut
-        m!=False)
+        panier_produits = Commande.objects.filter(client=request.user.client,statut=False)
         taille= len(panier_produits)
         context = {
             'produit' : produit,
