@@ -86,7 +86,7 @@ def signin_agent(request):
 @login_required(login_url='signinclient')
 def index(request):
     users = User.objects.all()
-    panier_produits = Commande.objects.filter(commandé=False)
+    panier_produits = Commande.objects.filter(statut:=False)
     taille= len(panier_produits)
     query = request.GET.get('query')
     if query:
@@ -107,7 +107,8 @@ def menuDetail(request, slug):
 
     if request.user.client:
         produit = Produit.objects.filter(slug=slug).first()
-        panier_produits = Commande.objects.filter(client=request.user.client,commandé=False)
+        panier_produits = Commande.objects.filter(client=request.user.client,statut
+        m!=False)
         taille= len(panier_produits)
         context = {
             'produit' : produit,
@@ -136,7 +137,7 @@ def ajouter_au_panier(request, slug):
 @login_required(login_url='signinclient')
 def get_panier_produits(request):
 
-    panier_produits = Commande.objects.filter(client=request.user.client,commandé=False)
+    panier_produits = Commande.objects.filter(client=request.user.client,statut=False)
     prix = panier_produits.aggregate(Sum('produit__prix_kg'))
     qte = panier_produits.aggregate(Sum('quantite'))
     total = prix.get("produit__prix_kg__sum")
@@ -162,15 +163,15 @@ class CartDeleteView(DeleteView):
         return False
 
 def commande_produit(request):
-    panier_produits = Commande.objects.filter(client=request.user.client,commandé=False)
+    panier_produits = Commande.objects.filter(client=request.user.client,statut=False)
     date_commande=date.today()
-    panier_produits.update(commandé=True, date_commande=date_commande)
+    panier_produits.update(statut=True, date_commande=date_commande)
     messages.info(request, "Produit commandé avec succes")
     return redirect("commande_details")
 
 def commande_details(request):
-    produits = Commande.objects.filter(client=request.user.client, commandé=True,statut="En cours").order_by('-date_commande')
-    panier_produits = Commande.objects.filter(client=request.user.client, commandé=True,statut="Livré").order_by('-date_commande')
+    produits = Commande.objects.filter(client=request.user.client, statut=True,statut="En cours").order_by('-date_commande')
+    panier_produits = Commande.objects.filter(client=request.user.client, statut=True,statut="Livré").order_by('-date_commande')
     prix = produits.aggregate(Sum('produit__prix_kg'))
     number = produits.aggregate(Sum('quantite'))
     total = prix.get("produit__prix_kg__sum")
