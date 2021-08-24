@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAdminUser
 from django.contrib.auth.models import User
+from main import models
+from . import serializers
 
 
 class UserRecordView(APIView):
@@ -34,3 +36,14 @@ class UserRecordView(APIView):
             },
             status=status.HTTP_400_BAD_REQUEST
         )
+
+
+
+class ListProduit(generics.ListCreateAPIView):
+    queryset = models.Produit.objects.all()
+    serializer_class = ProduitSerializer
+
+
+class DetailProduit(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Produit.objects.all()
+    serializer_class = ProduitSerializer
