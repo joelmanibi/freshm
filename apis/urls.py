@@ -4,7 +4,7 @@ from .views import UserRecordView,ListProduit, DetailProduit
 
 urlpatterns = [
     path('user/', UserRecordView.as_view(), name='users'),
-    path('', ListProduit.as_view()),
+    path('list', ListProduit.as_view()),
     path('<int:pk>/', DetailProduit.as_view())
 ]
 
