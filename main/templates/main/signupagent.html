@@ -1,0 +1,69 @@
+{% load crispy_forms_tags %}
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FreshMaraicher</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+        <style>
+
+          body {
+                      
+                      background: url("/static/images/bg.jpg") ;
+                      background-position: center;
+                      background-repeat: no-repeat;
+                      background-size: cover;
+                      font-family: "Roboto", sans-serif;
+                      -webkit-font-smoothing: antialiased;
+                      -moz-osx-font-smoothing: grayscale;      
+                    }
+          
+        </style>
+      </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark text-light bg-dark">
+            <a class="navbar-brand" href="{% url 'index' %}">FreshMaraicher</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item active">
+                  <a class="nav-link" href="veilletech.herokuapp.com">A propos <span class="sr-only">(current)</span></a>
+                </li>
+
+              </ul>
+              <span class="navbar-text">
+                
+              </span>
+            </div>
+          </nav>
+
+          <form>
+            <div class="login-page">
+              <div class="form">
+                <form method="POST" class="login-form" action="{% url 'signupagent' %}">
+                  {% csrf_token %}
+                  <label><h5>INSCRIPTION!</h5></label>
+                  {% render_field userForm.first_name class="input" placeholder="Nom" %}
+                  {% render_field userForm.last_name class="input" placeholder="Prenoms" %}
+                  {% render_field userForm.username class="input" placeholder="Pseudo" %}
+                  {% render_field userForm.password class="input" placeholder="Mot de passe" %}
+                  {% render_field agentForm.Tel class="input" placeholder="Mobile" %}
+                  <button type="submit">Crée un compte</button>
+                  <p class="message">Vous avez deja un compte? <a href="{% url 'signinagent' %}">Connectez vous!</a></p>
+                </form>
+              </div>
+          </div>
+
+    </body>
+    
+</html>

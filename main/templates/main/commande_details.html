@@ -1,0 +1,185 @@
+{% load crispy_forms_tags %}
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FreshMaraicher</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+        
+        <style>
+                    body {                      
+                      background:#f4f7f5;
+                      background-position: center;
+                      background-repeat: no-repeat;
+                      background-size: cover;
+                      font-family: "Roboto", sans-serif;
+                      -webkit-font-smoothing: antialiased;
+                      -moz-osx-font-smoothing: grayscale;
+                    }
+
+                    .panier{
+                      color:black;
+                    }
+
+                    .dishes .main .container .row img{
+                        max-width: 540px;
+                        max-height: 450px;
+                        width: fit-content;
+                    }
+
+                    .dishes .main .container .row .content{
+                        display: flex;
+                        flex-direction: column;
+                        text-align: center;
+                        justify-content: center;
+                    }
+
+                    .dishes .main .container .row .information{
+                        display: flex;
+                        flex-direction: column;
+                        text-align: center;
+                        justify-content: center;
+                    }
+          
+        </style>
+      </head>
+    <body >
+        <nav class="navbar navbar-expand-lg navbar-dark text-light bg-dark container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}">FreshMaraicher</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item active">
+                  <a class="nav-link" href="veilletech.herokuapp.com">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+              </ul>
+              <form class="d-flex">
+                <button class="btn btn-outline-light" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    Produit
+                    <span class="badge bg-light text-black ms-1 rounded-pill panier" >0</span>
+                </button>
+            </form>
+            </div>
+          </nav>
+        
+          <div class="cart">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 mt-5">
+                        <h3 class="text-center">Vos Commande en cours</h3>
+                        {% if produits %}
+                        <h4 class="text-center">Total A Payer: {{total}} for {{ count }} kg</h4>
+                        <h6 class="text-center">Payez a la livraison!</h6>
+                        <div class="table-responsive">
+                            <table class="table table-light">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Date de commande</th>
+                                    <th scope="col">Produit</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Prix au kg</th>
+                                    <th scope="col">quantite</th>
+                                    <th scope="col">Prix total</th>
+                                    <th scope="col">Statut</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for panier_active in produits %}
+                                <tr>
+                                    <td>{{ panier_active.date_commande }}</td>
+                                    <td>{{ panier_active.produit.Nom }} </td>
+                                    <td>{{ panier_active.produit.description|truncatechars:10 }}</td>
+                                    <td>{{ panier_active.produit.prix_kg }} FCFA</td>
+                                    <td>{{ panier_active.produit.quantite }}</td>
+                                    <td>{{ panier_active.produit.pieces }} FCFA</td>
+                                    <td>{{ panier_active.statut }}</td>
+                                </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% else %}
+                        <h4 class="text-center">Sorry, you have not ordered any item yet!!!</h4>
+                        {% endif %}
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="col-sm-12 mt-5">
+                        <h3 class="text-center">Past Orders</h3>
+                        {% if panier_produits %}
+                        <div class="table-responsive">
+                            <table class="table table-light">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Date de commande</th>
+                                    <th scope="col">Produit</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Prix au kg</th>
+                                    <th scope="col">quantite</th>
+                                    <th scope="col">Prix total</th>
+                                    <th scope="col">Date de livraison</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for panier in panier_produits %}
+                                <tr>
+                                    <td>{{ panier.date_commande }}</td>
+                                    <td>{{ panier.produit.Nom }} </td>
+                                    <td>{{ panier.produit.description|truncatechars:10 }}</td>
+                                    <td>{{ panier.produit.prix_kg }} FCFA</td>
+                                    <td>{{ panier.produit.quantite }}</td>
+                                    <td>{{ panier.produit.prix }} FCFA</td>
+                                    <td>{{ panier.date_livraison }}</td>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% else %}
+                        <h4 class="text-center">Vous n'avez aucune commande en cours!!!</h4>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      <!-- Footer-->
+      <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; FreshMaraicher By JoelMani 2021</p></div>
+      </footer>
+
+    </body>
+
+    <script>
+                // Activate Carousel
+        $("#myCarousel").carousel();
+
+        // Enable Carousel Indicators
+        $(".item").click(function(){
+        $("#myCarousel").carousel(1);
+        });
+
+        // Enable Carousel Controls
+        $(".carousel-control-prev").click(function(){
+        $("#myCarousel").carousel("prev");
+        });
+    </script>
+    
+</html>
