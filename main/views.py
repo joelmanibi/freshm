@@ -169,8 +169,8 @@ def commande_produit(request):
     return redirect("commande_details")
 
 def commande_details(request):
-    produits = Commande.objects.filter(client=request.user.client, statut=True,statut="En cours").order_by('-date_commande')
-    panier_produits = Commande.objects.filter(client=request.user.client, statut=True,statut="Livré").order_by('-date_commande')
+    produits = Commande.objects.filter(client=request.user.client, statut=True,ETAT="En cours").order_by('-date_commande')
+    panier_produits = Commande.objects.filter(client=request.user.client, statut=True,ETAT="Livré").order_by('-date_commande')
     prix = produits.aggregate(Sum('produit__prix_kg'))
     number = produits.aggregate(Sum('quantite'))
     total = prix.get("produit__prix_kg__sum")
