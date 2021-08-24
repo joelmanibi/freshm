@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404,reverse
 from . import forms
 from django.views.decorators.csrf import csrf_exempt
-from .models import Produit,Commande,Client,Agent
+from .models import Produit,Commande,Client
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib.auth.forms import AuthenticationForm

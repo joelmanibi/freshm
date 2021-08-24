@@ -19,10 +19,6 @@ class ClientForm(forms.ModelForm):
         model=models.Client
         fields=['Tel','ville','image']
 
-class AgentForm(forms.ModelForm):
-    class Meta:
-        model=models.Agent
-        fields=['Tel']
 
 class commandeForm(forms.ModelForm):
     class Meta:
