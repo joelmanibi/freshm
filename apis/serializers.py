@@ -45,7 +45,7 @@ class ProduitSerializer(serializers.ModelSerializer):
             'description',
             'lieu',
             'etat_stock',
-            'image',
+            'image_produit',
             'slug',
         )
         model = models.Produit
