@@ -126,7 +126,7 @@ def ajouter_au_panier(request, slug):
         commande = Commande.objects.create(
         produit=produit,
         client=request.user.client,
-        commandé=False,
+        statut=False,
         quantite=quantite,
         Lieu_livraison=Lieu_livraison
     )
