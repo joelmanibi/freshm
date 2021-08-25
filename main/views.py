@@ -137,9 +137,9 @@ def ajouter_au_panier(request, slug):
 def get_panier_produits(request):
 
     panier_produits = Commande.objects.filter(client=request.user.client,statut=False)
-    prix = panier_produits.aggregate(Sum('produit__prix_kg'))
+    prix = panier_produits.aggregate(Sum('produit__prix'))
     qte = panier_produits.aggregate(Sum('quantite'))
-    total = prix.get("produit__prix_kg__sum")
+    total = prix.get("produit__prix__sum")
     count = qte.get("quantite__sum")
     taille= len(panier_produits)
     context = {
@@ -171,9 +171,9 @@ def commande_produit(request):
 def commande_details(request):
     produits = Commande.objects.filter(client=request.user.client, statut=True,ETAT="En cours").order_by('-date_commande')
     panier_produits = Commande.objects.filter(client=request.user.client, statut=True,ETAT="Livré").order_by('-date_commande')
-    prix = produits.aggregate(Sum('produit__prix_kg'))
+    prix = produits.aggregate(Sum('produit__prix'))
     number = produits.aggregate(Sum('quantite'))
-    total = prix.get("produit__prix_kg__sum")
+    total = prix.get("produit__prix__sum")
     count = number.get("quantite__sum")
     context = {
         'produits':produits,
