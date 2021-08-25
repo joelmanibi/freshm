@@ -62,7 +62,7 @@ class Commande(models.Model):
     statut = models.BooleanField(default=False)
 
     def prix_total(self):
-        price = self.produit.prix_kg
+        price = self.produit.prix
         quantity = self.quantite
         total = price*quantity
         print(total)
