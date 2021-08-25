@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAdminUser
 from django.contrib.auth.models import User
 from main import models
-#from .serializers import ProduitSerializer
+from .serializers import ProduitSerializer
 from rest_framework import generics
 
 
@@ -37,8 +37,6 @@ class UserRecordView(APIView):
             },
             status=status.HTTP_400_BAD_REQUEST
         )
-
-
 
 
 

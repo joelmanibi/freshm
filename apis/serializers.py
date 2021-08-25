@@ -37,9 +37,6 @@ class ClientSerializer(serializers.ModelSerializer):
         )
 
 class ProduitSerializer(serializers.ModelSerializer):
-    def create(self, validated_data):
-        produit = Produit.objects.create_produit(**validated_data)
-        return produit
     model = models.Produit
     class Meta:
         fields = (
