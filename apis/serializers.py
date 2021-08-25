@@ -37,7 +37,6 @@ class ClientSerializer(serializers.ModelSerializer):
         )
 
 class ProduitSerializer(serializers.ModelSerializer):
-    model = models.Produit
     class Meta:
         fields = (
             'id',
@@ -49,6 +48,7 @@ class ProduitSerializer(serializers.ModelSerializer):
             'image',
             'slug',
         )
+        model = models.Produit
 
 class CommandeSerializer(serializers.ModelSerializer):
     model = models.Commande
