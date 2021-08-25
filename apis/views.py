@@ -38,34 +38,7 @@ class UserRecordView(APIView):
             status=status.HTTP_400_BAD_REQUEST
         )
 
-class ProduitRecordView(APIView):
-    """
-    API View pour créer ou obtenir une liste de tous les inscrits
-    utilisateurs. La requête GET renvoie les utilisateurs enregistrés alors que
-    une requête POST permet de créer un nouvel utilisateur.
-    """
-    
 
-    def get(self, format=None):
-        produits = Produit.objects.all()
-        serializer = ProduitSerializer()
-        return Response(serializer.data)
-
-    def post(self, request):
-        serializer = ProduitSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=ValueError):
-            serializer.create(validated_data=request.data)
-            return Response(
-                serializer.data,
-                status=status.HTTP_201_CREATED
-            )
-        return Response(
-            {
-                "error": True,
-                "error_msg": serializer.error_messages,
-            },
-            status=status.HTTP_400_BAD_REQUEST
-        )
 
 
 
