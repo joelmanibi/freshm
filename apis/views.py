@@ -44,11 +44,11 @@ class ProduitRecordView(APIView):
     utilisateurs. La requête GET renvoie les utilisateurs enregistrés alors que
     une requête POST permet de créer un nouvel utilisateur.
     """
-    permission_classes = [IsAdminUser]
+    
 
     def get(self, format=None):
         produits = Produit.objects.all()
-        serializer = ProduitSerializer(produits, many=True)
+        serializer = ProduitSerializer()
         return Response(serializer.data)
 
     def post(self, request):
