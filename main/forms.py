@@ -19,7 +19,7 @@ class ClientForm(forms.ModelForm):
         model=models.Client
         fields=['Tel','ville','image']
 
-class ProduitForm(form.ModelForm):
+class ProduitForm(forms.ModelForm):
     class Meta:
         model=models.Produit
         fields=['Nom','prix','description','lieu','slug']
