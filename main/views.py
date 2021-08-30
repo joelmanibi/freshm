@@ -184,7 +184,7 @@ def commande_details(request):
     return render(request, 'main/commande_details.html', context)
 
 def agent(request):
-    commandes = Commande.objects.filter(produit__agent).order_by('-date_commande')
+    commandes = Commande.objects.filter(produit=agent.request.user.agent).order_by('-date_commande')
     context = {
         'commandes':commandes,
     }
