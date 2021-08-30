@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib import messages
 from django.db.models import Sum
 from datetime import date
-from .forms import commandeForm,ProduitForm
+from .forms import commandeForm
 # Create your views here.
 
 
@@ -171,13 +171,3 @@ def agent(request):
     }
     return render(request, 'main/agent_dashboard.html', context)
 
-
-def ajouter_produit(request):
-    if request.method =='POST':
-        formprod = ProduitForm(request.POST)
-        if formprod.is_valid():
-            formprod.save()
-            return redirect("agent")
-    else:
-        formprod = ProduitForm()
-    return render(request, 'main/ajout_produit.html',{'formprod':formprod})

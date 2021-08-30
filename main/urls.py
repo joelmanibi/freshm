@@ -14,7 +14,6 @@ urlpatterns = [
     path('agent', views.agent, name='agent'),
     path('detail/<slug>', views.menuDetail, name='detail'),
     path('ajouter-au-panier/<slug>/', views.ajouter_au_panier, name='ajouter-au-panier'),
-    path('ajouter-produit/', views.ajouter_produit, name='ajouter-produit'),
     path('panier/', views.get_panier_produits, name='panier'),
     path('supprimé-du-panier/<int:pk>/', CartDeleteView.as_view(), name='supprimé-du-panier'),
     path('commande/', views.commande_produit, name='commande'),
