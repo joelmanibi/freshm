@@ -11,6 +11,7 @@ from .views import (
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('agent', views.agent, name='agent'),
     path('detail/<slug>', views.menuDetail, name='detail'),
     path('ajouter-au-panier/<slug>/', views.ajouter_au_panier, name='ajouter-au-panier'),
     path('panier/', views.get_panier_produits, name='panier'),

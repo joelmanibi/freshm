@@ -18,6 +18,19 @@ class Client(models.Model):
     def __str__(self):
         return self.user.first_name
 
+class Agent(models.Model):
+    
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    Tel = PhoneNumberField(blank=True)
+    @property
+    def get_name(self):
+        return self.user.first_name+" "+self.user.last_name
+    @property
+    def get_id(self):
+        return self.user.id
+    def __str__(self):
+        return self.user.first_name
+
 
 class Produit(models.Model):
 
@@ -34,6 +47,7 @@ class Produit(models.Model):
     etat_stock = models.CharField(max_length=15, choices=ETAT, blank=True)
     image_produit= models.ImageField(upload_to='image_produit',null=True,blank=True)
     slug = models.SlugField()
+    agent = models.ForeignKey('Agent', on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return self.Nom
