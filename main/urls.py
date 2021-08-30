@@ -7,6 +7,7 @@ from .views import (
     commande_produit,
     CartDeleteView,
     commande_details,
+    ajouter_produit,
 )
 
 urlpatterns = [
