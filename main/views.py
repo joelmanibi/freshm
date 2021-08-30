@@ -51,25 +51,6 @@ def logout_client(request):
         logout(request)
     return redirect("signinclient")
 
-def signup_agent(request):
-    userForm=forms.AgentUserForm()
-    agentForm=forms.AgentForm()
-    dicti={'userForm':userForm,'agentForm':agentForm}
-    if request.method=='POST':
-        userForm=forms.AgentUserForm(request.POST)
-        agentForm=forms.AgentForm(request.POST,request.FILES)
-        if userForm.is_valid() and agentForm.is_valid():
-            g = Group.objects.get(name='Agents')
-            user=userForm.save()
-            user.set_password(user.password)
-            user.save()
-            agent=agentForm.save(commit=False)
-            agent.user=user
-            agent.save()
-            g.user_set.add(agent)
-        return HttpResponseRedirect('dashboardclient')
-    return render(request,'main/signupagent.html',context=dicti)
-
 @login_required(login_url='adminlogin')
 def signin_agent(request):
     if request.method == 'POST':
@@ -189,3 +170,14 @@ def agent(request):
         'commandes':commandes,
     }
     return render(request, 'main/agent_dashboard.html', context)
+
+
+def ajouter_produit(request):
+    if request.method =='POST':
+        formprod = ProduitForm(request.POST)
+        if formprod.is_valid():
+            formprod.save()
+            return redirect("agent")
+    else:
+        formprod = ProduitForm()
+    return render(request, 'main/ajout_produit.html',{'formprod':formprod})

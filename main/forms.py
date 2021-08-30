@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from . import models
-from .models import Commande,Client
+from .models import Commande,Client,Produit
 
 
 class ClientUserForm(forms.ModelForm):
@@ -19,6 +19,10 @@ class ClientForm(forms.ModelForm):
         model=models.Client
         fields=['Tel','ville','image']
 
+class ProduitForm(form.ModelForm):
+    class Meta:
+        model=models.Produit
+        fields=['Nom','prix','description','lieu','slug']
 
 class commandeForm(forms.ModelForm):
     class Meta:

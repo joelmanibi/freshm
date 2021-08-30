@@ -1,0 +1,10 @@
+<div class="container">
+    <h1>Ajouter un produit</h1>
+    <div class="form-border">
+        <form class="site-form" action="{% url 'accounts:signup' %}" method="post">
+            {% csrf_token %}
+            {{ formprod|crispy }}
+            <input type="submit" value="Signup" class="btn">
+        </form>
+    </div>
+</div>
