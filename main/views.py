@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib import messages
 from django.db.models import Sum
 from datetime import date
-from .forms import commandeForm
+from .forms import commandeForm,ProduitForm
 # Create your views here.
 
 
