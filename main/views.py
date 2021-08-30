@@ -171,3 +171,13 @@ def agent(request):
     }
     return render(request, 'main/agent_dashboard.html', context)
 
+
+def ajouter_produit(request):
+    if request.method =='POST':
+        formprod = ProduitForm(request.POST)
+        if formprod.is_valid():
+            formprod.save()
+            return redirect("agent")
+    else:
+        formprod = ProduitForm()
+    return render(request, 'main/ajout_produit.html',{'formprod':formprod})
