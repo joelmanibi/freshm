@@ -55,12 +55,12 @@ class CommandeSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
             'id',
-            'client'
-    'produit'
-    'quantite'
-    'Lieu_livraison'
-    'date_commande'
-    'ETAT'
-    'date_livraison'
-    'statut'
+            'client',
+    'produit',
+    'quantite',
+    'Lieu_livraison',
+    'date_commande',
+    'ETAT',
+    'date_livraison',
+    'statut',
         )
