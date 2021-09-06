@@ -17,7 +17,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
         
         <style>
-          @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
                     body {                      
                       background:#f4f7f5;
                       background-position: center;
@@ -32,9 +31,15 @@
                       color:black;
                     }
 
-                    .F{
-                      font-family:'Open Sans',serif;
-                      color: rgb(5, 129, 5);
+                    .fresh{
+                      font-family: sans-serif;
+                      font-weight: bold;
+                      color: green;
+                    }
+                    .maraicher{
+                      font-family: sans-serif;
+                      font-weight: bold;
+                      color: orangered;
                     }
           
         </style>
@@ -42,8 +47,8 @@
     <body >
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"><img src="{% static '/images/logo.png' %}"  class="rounded-circle" style="width:50px;height: 50px;">
-        <a class="f">F</a><a class="resh">resh</a><a class="M">M</a><a class="araicher">araicher</a>
+        <a class="navbar-brand " href="#"><img src="{% static '/images/logo.png' %}"  class="rounded-circle" style="width:50px;height: 50px;">
+        <span class="fresh">Fresh</span><span class="maraicher">Maraicher</span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
