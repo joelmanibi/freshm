@@ -44,7 +44,6 @@ class ProduitSerializer(serializers.ModelSerializer):
             'prix',
             'description',
             'lieu',
-            'etat_stock',
             'image_produit',
             'slug',
         )
@@ -56,11 +55,11 @@ class CommandeSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'client',
-    'produit',
-    'quantite',
-    'Lieu_livraison',
-    'date_commande',
-    'ETAT',
-    'date_livraison',
-    'statut',
-        )
+            'produit',
+            'quantite',
+            'Lieu_livraison',
+            'date_commande',
+            'ETAT',
+            'date_livraison',
+            'statut',
+                )

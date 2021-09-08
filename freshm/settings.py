@@ -14,6 +14,9 @@ from pathlib import Path
 import os
 import dj_database_url
 import django_heroku
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'main',
     'apis',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -159,3 +163,8 @@ DATABASES['default'].update(db_from_env)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
+cloudinary.config( 
+  cloud_name = "joelmani12", 
+  api_key = "152492857753164", 
+  api_secret = "Pg8EFCUdK_59LfZOSDJtAdadzfs" 
+)
