@@ -49,6 +49,9 @@
                       top: 0;
                       box-shadow: 0 5px 5px -2px rgb(233, 114, 17);
                     }
+                    .mabox{
+                      border-radius: 20px;
+                    }
           
         </style>
       </head>
@@ -162,16 +165,16 @@
             <center> <h1>Nos Produits</h1> </center>
             
 
-              <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
+              <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 {% if produits|length_is:"0" %}
                         <div> Aucun resultat trouuvé!!!! </div>
                 {% else %}
                 {% for produit in produits %}
                         <div class="col mb-5">
                          
-                            <div class="card h-100 w-100">
+                            <div class="card h-100 w-100 mabox">
                                 <!-- Badge etat de stock-->
-                                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Etat</div>
+                                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">{{ produit.lieu }}</div>
                                 <!-- Product image-->
                                 <img class="card-img-top" src="{{ produit.image_produit.url }}" alt="..." />
                                 <!-- Product details-->
