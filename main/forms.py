@@ -22,7 +22,7 @@ class ClientForm(forms.ModelForm):
 class ProduitForm(forms.ModelForm):
     class Meta:
         model=models.Produit
-        fields=['Nom','prix','description','lieu','slug','image_produit']
+        fields=['Nom','prix','description','lieu','image_produit']
 
 class commandeForm(forms.ModelForm):
     class Meta:

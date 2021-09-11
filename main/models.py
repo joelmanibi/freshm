@@ -41,7 +41,6 @@ class Produit(models.Model):
     description=models.TextField()
     lieu = models.CharField(max_length=40)
     image_produit= CloudinaryField('image')
-    slug = models.SlugField()
     agent = models.ForeignKey('Agent', on_delete=models.CASCADE,null=True)
 
     def __str__(self):
@@ -49,7 +48,7 @@ class Produit(models.Model):
     
     def get_ajouter_au_panier_url(self):
         return reverse("ajouter-au-panier", kwargs={
-            'slug': self.slug
+            'id': self.id
         })
 
 

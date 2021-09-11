@@ -84,10 +84,10 @@ def index(request):
     return render(request, 'main/index.html',context)
 
 @login_required(login_url='signinclient')
-def menuDetail(request, slug):
+def menuDetail(request, ):
 
     if request.user.client:
-        produit = Produit.objects.filter(slug=slug).first()
+        produit = Produit.objects.filter(id=id).first()
         panier_produits = Commande.objects.filter(client=request.user.client,statut=False)
         taille= len(panier_produits)
         context = {
@@ -99,9 +99,9 @@ def menuDetail(request, slug):
         return redirect("signinclient")
 
 @login_required(login_url='signinclient')
-def ajouter_au_panier(request, slug):
+def ajouter_au_panier(request, id):
     if request.method == 'POST':
-        produit = get_object_or_404(Produit, slug=slug)
+        produit = get_object_or_404(Produit, id=id)
         quantite=request.POST.get('quantite')
         Lieu_livraison = request.POST.get('Lieu_livraison')
         commande = Commande.objects.create(

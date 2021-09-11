@@ -13,8 +13,8 @@ from .views import (
 urlpatterns = [
     path('', views.index, name='index'),
     path('agent', views.agent, name='agent'),
-    path('detail/<slug>', views.menuDetail, name='detail'),
-    path('ajouter-au-panier/<slug>/', views.ajouter_au_panier, name='ajouter-au-panier'),
+    path('detail/<int:pk>', views.menuDetail, name='detail'),
+    path('ajouter-au-panier/<int:pk>/', views.ajouter_au_panier, name='ajouter-au-panier'),
     path('ajouter-produit', views.ajouter_produit, name='ajouter-produit'),
     path('panier/', views.get_panier_produits, name='panier'),
     path('supprimé-du-panier/<int:pk>/', CartDeleteView.as_view(), name='supprimé-du-panier'),
