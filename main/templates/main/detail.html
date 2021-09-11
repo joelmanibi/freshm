@@ -104,7 +104,7 @@
                       <h4>{{ item.instructions }}</h4>
                       <h4>{{ etat_stock }}</h4>
                     </div>
-                    <form method="POST" class="form-controle" action="{% url 'ajouter-au-panier' produit.slug %}">
+                    <form method="POST" class="form-controle" action="{% url 'ajouter-au-panier' produit.id %}">
                       {% csrf_token %}
                       <div class="form-group">
                         <label for="Lieu_livraison" class="control-label">Lieu de livraison:</label>
