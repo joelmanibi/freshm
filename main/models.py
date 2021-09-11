@@ -48,7 +48,7 @@ class Produit(models.Model):
     
     def get_ajouter_au_panier_url(self):
         return reverse("ajouter-au-panier", kwargs={
-            'id': self.id
+            'id':int(self.id) 
         })
 
 
