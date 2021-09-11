@@ -87,7 +87,7 @@ def index(request):
 def menuDetail(request, pk):
 
     if request.user.client:
-        produit = Produit.objects.filter(id__produit=id).first()
+        produit = Produit.objects.filter(id=21).first()
         panier_produits = Commande.objects.filter(client=request.user.client,statut=False)
         taille= len(panier_produits)
         context = {
