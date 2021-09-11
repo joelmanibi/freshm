@@ -84,7 +84,7 @@ def index(request):
     return render(request, 'main/index.html',context)
 
 @login_required(login_url='signinclient')
-def menuDetail(request, ):
+def menuDetail(request, id):
 
     if request.user.client:
         produit = Produit.objects.filter(id=id).first()
