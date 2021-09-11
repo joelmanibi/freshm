@@ -46,10 +46,10 @@ class Produit(models.Model):
     def __str__(self):
         return self.Nom
     
-    def get_ajouter_au_panier_url(self):
-        return reverse("ajouter-au-panier", kwargs={
-            'id':int(self.id) 
-        })
+    # def get_ajouter_au_panier_url(self):
+    #     return reverse("ajouter-au-panier", kwargs={
+    #         'id':int(self.id) 
+    #     })
 
 
 
