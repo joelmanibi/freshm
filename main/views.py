@@ -86,7 +86,7 @@ def index(request):
 @login_required(login_url='signinclient')
 def menuDetail(request, pk):
     if request.user.client:
-        produit = Produit.objects.filter(id=pk).first()
+        produit = Produit.objects.filter(pk=id).first()
         panier_produits = Commande.objects.filter(client=request.user.client,statut=False)
         taille= len(panier_produits)
         context = {
