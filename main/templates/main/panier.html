@@ -127,7 +127,7 @@
                                 <tr>
                                     <td>{{ commande.produit.Nom }} </td>
                                     <td>{{ commande.produit.description|truncatechars:10 }}</td>
-                                    <td>{{ commande.produit.prix_kg }}</td>
+                                    <td>{{ commande.produit.prix }}</td>
                                     <td>{{ commande.quantite }}</td>
                                     <td>{{ commande.prix_total }} FCFA</td>
                                     <td><a class="btn btn-danger" href="{% url 'supprimé-du-panier' commande.id %}">Delete 😢</a></td>
@@ -144,7 +144,9 @@
                         <div class="content-section">
                             <h3 class="text-center">Bilan de votre commande</h3>
                               <ul class="list-group">
-                                <li class="list-group-item list-group-item-light text-center text-dark">Total a payer: {{ total }}🤑</li>
+                                {% if commande in panier_produits %}
+                                <li class="list-group-item list-group-item-light text-center text-dark">Total a payer: {{ commande.prix_total }}🤑</li>
+                                {% endif %}
                                 <li class="list-group-item list-group-item-light text-center text-dark">Quantité de Kg: {{ count }} Kg</li>
                                 <li class="list-group-item list-group-item-light text-center text-dark"><a class="btn btn-info text-dark" href="{% url 'commande' %}">Valider🤝</a></li>
                                 <li class="list-group-item list-group-item-light text-center"><a class="btn btn-warning text-dark" href="/">Continuer vos achats✌️</a></li>
