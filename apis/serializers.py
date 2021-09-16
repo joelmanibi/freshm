@@ -39,6 +39,7 @@ class ClientSerializer(serializers.ModelSerializer):
 class AgentSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
+            'id'
             'user',
             'Tel'
             )
