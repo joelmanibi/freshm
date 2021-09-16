@@ -36,6 +36,13 @@ class ClientSerializer(serializers.ModelSerializer):
             'image',
         )
 
+class AgentSerializer(serializers.ModelSerializer):
+    model = models.Agent
+    class Meta:
+        fields = (
+            'user',
+            'Tel')
+
 class ProduitSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
