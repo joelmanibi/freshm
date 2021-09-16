@@ -43,7 +43,7 @@ class AgentSerializer(serializers.ModelSerializer):
             'user',
             'Tel'
             )
-            model = models.Agent
+        model = models.Agent
 
 class ProduitSerializer(serializers.ModelSerializer):
     class Meta:
