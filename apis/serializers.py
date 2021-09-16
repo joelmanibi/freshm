@@ -37,11 +37,12 @@ class ClientSerializer(serializers.ModelSerializer):
         )
 
 class AgentSerializer(serializers.ModelSerializer):
-    model = models.Agent
     class Meta:
         fields = (
             'user',
-            'Tel')
+            'Tel'
+            )
+            model = models.Agent
 
 class ProduitSerializer(serializers.ModelSerializer):
     class Meta:
