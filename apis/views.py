@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAdminUser
 from django.contrib.auth.models import User
+from django.contrib.auth import login
 from main import models
 from .serializers import ProduitSerializer,AgentSerializer
 from rest_framework import generics
@@ -45,7 +46,8 @@ class ListProduit(generics.ListCreateAPIView):
     serializer_class = ProduitSerializer
 
 class ListProduitAgent(generics.ListCreateAPIView):
-    queryset = models.Produit.objects.filter(agent=auth.User.id)
+    # queryset = models.Produit.objects.filter(agent=auth.User.id)
+    queryset = models.Produit.objects.filter(agent=1)
     serializer_class = ProduitSerializer
 
 
