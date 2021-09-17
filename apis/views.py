@@ -41,7 +41,7 @@ class UserRecordView(APIView):
 
 
 class ListProduit(generics.ListCreateAPIView):
-    queryset = models.Produit.objects.all()
+    queryset = models.Produit.objects.filter(agent=1)
     serializer_class = ProduitSerializer
 
 
