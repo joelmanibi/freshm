@@ -66,7 +66,6 @@ def signin_agent(request):
 
 @login_required(login_url='signinclient')
 def index(request):
-    users = User.objects.all()
     panier_produits = Commande.objects.filter(statut=False)
     taille= len(panier_produits)
     query = request.GET.get('query')
@@ -79,7 +78,6 @@ def index(request):
             'panier_produits':panier_produits,
             'taille':taille,
             'produits':produits,
-            'users':users
     }
     return render(request, 'main/index.html',context)
 
