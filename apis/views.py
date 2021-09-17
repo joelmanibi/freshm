@@ -1,5 +1,4 @@
 from .serializers import UserSerializer
-from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -46,11 +45,7 @@ class ListProduit(generics.ListCreateAPIView):
     serializer_class = ProduitSerializer
 
 class ListProduitAgent(generics.ListCreateAPIView):
-    usera=get_object_or_404(User)
-    iduser =usera.id
-    currentagent=models.Agent.filter(user=iduser)
-    queryset = models.Produit.objects.filter(agent=currentagent)
-    serializer_class = AgentSerializer
+    queryset = models.Produit.objects.filter(agent=1)
     serializer_class = ProduitSerializer
 
 
