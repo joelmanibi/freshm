@@ -78,7 +78,6 @@ def index(request):
             'panier_produits':panier_produits,
             'taille':taille,
             'produits':produits,
-            'users':users
     }
     return render(request, 'main/index.html',context)
 
