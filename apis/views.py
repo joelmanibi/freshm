@@ -45,7 +45,7 @@ class ListProduit(generics.ListCreateAPIView):
     serializer_class = ProduitSerializer
 
 class ListProduitAgent(generics.ListCreateAPIView):
-    queryset = models.Produit.objects.filter(agent=1)
+    queryset = models.Produit.objects.filter(agent=auth.User.id)
     serializer_class = ProduitSerializer
 
 
