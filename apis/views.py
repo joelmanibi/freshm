@@ -46,9 +46,15 @@ class ListProduit(generics.ListCreateAPIView):
     serializer_class = ProduitSerializer
 
 class ListProduitAgent(generics.ListCreateAPIView):
-    # queryset = models.Produit.objects.filter(agent=auth.User.id)
-    queryset = models.Produit.objects.filter(agent=1)
     serializer_class = ProduitSerializer
+
+    def get_queryset(self):
+        """
+        Cette vue doit renvoyer une liste de tous les produits
+        pour l'utilisateur actuellement authentifié.
+        """
+        user = self.request.user
+        return models.Produit.objects.filter(agent=user)
 
 
 class DetailProduit(generics.RetrieveUpdateDestroyAPIView):
