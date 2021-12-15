@@ -106,6 +106,7 @@
 body {
   background-color: #1c3828 ;
   background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -113,19 +114,23 @@ body {
 }
         </style>
         </head>
-    
     <body class="">
-          <div class="login-page">
-            <div class="form">
-              <form method="POST" class="login-form" action="{% url 'signinclient' %}">
-                {% csrf_token %}
-                <label><h5>CLIENT CONNECTEZ VOUS!</h5></label>
-                {% render_field form.username class="input" placeholder="Pseudo" %}
-                {% render_field form.password class="input" placeholder="Mot de passe" %}
-                <button type="submit">Connectez vous</button>
-                <p class="message">Vous n'avez pas de compte? <a href="{% url 'signupclient' %}">Inscrivez vous</a></p>
-              </form>
-            </div>
+      <div class="login-page">
+        <div class="form">
+          <form method="POST" class="login-form" action="{% url 'signupclient' %}">
+            {% csrf_token %}
+            <label><h5>INSCRIPTION client!</h5></label>
+            {% render_field userForm.first_name class="input" placeholder="Nom" %}
+            {% render_field userForm.last_name class="input" placeholder="Prenoms" %}
+            {% render_field userForm.username class="input" placeholder="Pseudo" %}
+            {% render_field userForm.password class="input" placeholder="Mot de passe" %}
+            {% render_field clientForm.ville class="input" placeholder="Address" %}
+            {% render_field clientForm.Tel class="input" placeholder="Mobile" %}
+            {% render_field clientForm.image class="input" placeholder="Image" %}
+            <button type="submit">Crée un compte</button>
+            <p class="message">Vous avez deja un compte? <a href="{% url 'signinclient' %}">Connectez vous!</a></p>
+          </form>
         </div>
+    </div>
     </body>
 </html>

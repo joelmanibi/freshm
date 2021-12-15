@@ -262,7 +262,7 @@
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Mon<span class="cart-amunt">Panier</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">{{taille}}</span></a>
+                        <a href="{% url 'index' %}">Mon<span class="cart-amunt">Panier</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">{{taille}}</span></a>
                     </div>
                 </div>
             </div>
@@ -338,7 +338,7 @@
                                     <tbody>
                                         <tr class="cart_item">
                                             <td class="product-remove">
-                                                <a title="Remove this item" class="remove" href="{% url 'supprimé-du-panier' commande.id %}">×</a> 
+                                                <a title="Remove this item" class="remove" href="{% url 'supprimé-du-panier' commande.id %}">X</a> 
                                             </td>
 
                                             <td class="product-thumbnail">
