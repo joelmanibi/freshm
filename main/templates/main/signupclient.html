@@ -104,9 +104,8 @@
   color: #EF3B3A;
 }
 body {
-  background: url("/static/images/bg.jpg") ;
+  background-color: #1c3828 ;
   background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -114,44 +113,19 @@ body {
 }
         </style>
         </head>
-        <nav class="navbar navbar-expand-lg navbar-dark text-light bg-dark">
-          <a class="navbar-brand" href="{% url 'index' %}">FreshMaraicher</a>
-
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-
-              <li class="nav-item active">
-                <a class="nav-link" href="veilletech.herokuapp.com">A propos <span class="sr-only">(current)</span></a>
-              </li>
-
-            </ul>
-            <span class="navbar-text">
-              
-            </span>
-          </div>
-        </nav>
     
     <body class="">
-      <div class="login-page">
-        <div class="form">
-          <form method="POST" class="login-form" action="{% url 'signupclient' %}">
-            {% csrf_token %}
-            <label><h5>INSCRIPTION client!</h5></label>
-            {% render_field userForm.first_name class="input" placeholder="Nom" %}
-            {% render_field userForm.last_name class="input" placeholder="Prenoms" %}
-            {% render_field userForm.username class="input" placeholder="Pseudo" %}
-            {% render_field userForm.password class="input" placeholder="Mot de passe" %}
-            {% render_field clientForm.ville class="input" placeholder="Address" %}
-            {% render_field clientForm.Tel class="input" placeholder="Mobile" %}
-            {% render_field clientForm.image class="input" placeholder="Image" %}
-            <button type="submit">Crée un compte</button>
-            <p class="message">Vous avez deja un compte? <a href="{% url 'signinclient' %}">Connectez vous!</a></p>
-          </form>
+          <div class="login-page">
+            <div class="form">
+              <form method="POST" class="login-form" action="{% url 'signinclient' %}">
+                {% csrf_token %}
+                <label><h5>CLIENT CONNECTEZ VOUS!</h5></label>
+                {% render_field form.username class="input" placeholder="Pseudo" %}
+                {% render_field form.password class="input" placeholder="Mot de passe" %}
+                <button type="submit">Connectez vous</button>
+                <p class="message">Vous n'avez pas de compte? <a href="{% url 'signupclient' %}">Inscrivez vous</a></p>
+              </form>
+            </div>
         </div>
-    </div>
     </body>
 </html>

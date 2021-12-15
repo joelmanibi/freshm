@@ -34,76 +34,7 @@
         </style>
       </head>
     <body >
-        <nav class="navbar navbar-expand-lg navbar-dark text-light bg-dark container-fluid">
-            <a class="navbar-brand" href="#">FreshMaraicher</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarText">
-              <ul class="navbar-nav mr-auto">
-
-                <li class="nav-item active">
-                  <a class="nav-link" href="veilletech.herokuapp.com">Home <span class="sr-only">(current)</span></a>
-                </li>
-
-              </ul>
-              <form class="d-flex">
-                <button class="btn btn-outline-light" type="submit">
-                    <i class="bi-cart-fill me-1"></i>
-                    Produit
-                    <span class="badge bg-light text-black ms-1 rounded-pill panier" >0</span>
-                </button>
-            </form>
-            </div>
-          </nav>
-
-        
-            <!-- Carousel -->
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">   
-
-            <!-- Indicators -->
-            <ul class="carousel-indicators">
-              <li data-target="#demo" data-slide-to="0" class="active"></li>
-              <li data-target="#demo" data-slide-to="1"></li>
-              <li data-target="#demo" data-slide-to="2"></li>
-            </ul>
-            
-            <!-- The slideshow -->
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="{% static '/images/vegetables-790022.jpg' %}" alt="Los Angeles" width=100% height="500">
-                <div class="carousel-caption">
-                      <h3>LEGUMES UN</h3>
-                      <p>(legume 1)</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="{% static '/images/carrots-3440368.jpg' %}" alt="Chicago" width=100% height="500">
-                <div class="carousel-caption">
-                  <h3>LEGUMES DEUX</h3>
-                  <p>(legume 2)</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="{% static '/images/vegetables-1238252.jpg' %}" alt="New York" width=100% height="500">
-                <div class="carousel-caption">
-                  <h3>LEGUMES TROIS</h3>
-                  <p>(legume 3)</p>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Left and right controls -->
-            <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-              <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-              <span class="carousel-control-next-icon"></span>
-            </a>
-        </div>
-        
+    
         <div class="content-section container">
             <form method="POST">
                 {% csrf_token %}
@@ -117,11 +48,6 @@
                 </div>
             </form>
         </div>
- 
-      <!-- Footer-->
-      <footer class="py-5 bg-dark">
-        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; FreshMaraicher By JoelMani 2021</p></div>
-      </footer>
 
     </body>
 

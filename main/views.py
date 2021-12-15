@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User,Group
 from django.contrib.auth import login,logout
-from django.contrib.auth.decorators import login_required,user_passes_test
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Sum
 from datetime import date
@@ -64,7 +64,7 @@ def signin_agent(request):
         form = AuthenticationForm()
     return render(request, 'main/signinagent.html',{'form':form})
 
-@login_required(login_url='signinclient')
+# @login_required(login_url='signinclient')
 def index(request):
     panier_produits = Commande.objects.filter(statut=False)
     taille= len(panier_produits)
@@ -113,7 +113,6 @@ def ajouter_au_panier(request, pk):
 
 @login_required(login_url='signinclient')
 def get_panier_produits(request):
-
     panier_produits = Commande.objects.filter(client=request.user.client,statut=False)
     prix = panier_produits.aggregate(Sum('produit__prix'))
     qte = panier_produits.aggregate(Sum('quantite'))
