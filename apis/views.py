@@ -79,7 +79,7 @@ class ListCommandeAgent(generics.ListCreateAPIView):
         """
         user = self.request.user
         prod = models.Produit.objects.filter(agent=user)
-        return models.Commande.objects.filter(produit=prod)
+        return self.models.Commande.objects.filter(produit=prod)
 
 class DetailProduit(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Produit.objects.all()
