@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAdminUser
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from main import models
-from .serializers import ProduitSerializer,AgentSerializer
+from .serializers import ProduitSerializer,AgentSerializer,CommandeSerializer
 from rest_framework import generics
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -54,8 +54,6 @@ class UserRecordView(APIView):
             status=status.HTTP_400_BAD_REQUEST
         )
 
-
-
 class ListProduit(generics.ListCreateAPIView):
     queryset = models.Produit.objects.all()
     serializer_class = ProduitSerializer
@@ -71,6 +69,17 @@ class ListProduitAgent(generics.ListCreateAPIView):
         user = self.request.user
         return models.Produit.objects.filter(agent=user)
 
+class ListCommandeAgent(generics.ListCreateAPIView):
+    serializer_class = CommandeSerializer
+
+    def get_queryset(self):
+        """
+        Cette vue doit renvoyer une liste de tous les produits
+        pour l'utilisateur actuellement authentifié.
+        """
+        user = self.request.user
+        produit = models.Produit.objects.filter(agent=user)
+        return models.Commande.objects.filter(produit=produit)
 
 class DetailProduit(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Produit.objects.all()
