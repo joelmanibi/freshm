@@ -78,7 +78,8 @@ class ListCommandeAgent(generics.ListCreateAPIView):
         pour l'utilisateur actuellement authentifié.
         """
         user = self.request.user
-        return models.Commande.objects.filter(produit__agent= models.Produit.objects.filter(agent=user))
+        prod=models.Produit.objects.filter(agent=user)
+        return models.Commande.objects.filter(produit__agent= prod )
 
 class DetailProduit(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Produit.objects.all()
