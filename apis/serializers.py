@@ -59,7 +59,6 @@ class ProduitSerializer(serializers.ModelSerializer):
         model = models.Produit
 
 class CommandeSerializer(serializers.ModelSerializer):
-    model = models.Commande
     class Meta:
         fields = (
             'id',
@@ -72,3 +71,4 @@ class CommandeSerializer(serializers.ModelSerializer):
             'date_livraison',
             'statut',
                 )
+        model = models.Commande
