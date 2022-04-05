@@ -69,7 +69,7 @@ class ListProduitAgent(generics.ListCreateAPIView):
         pour l'utilisateur actuellement authentifié.
         """
         user = self.request.user
-        return models.Produit.objects.filter(agent=user).order_by('-id')
+        return models.Produit.objects.filter(agent=user).order_by('-id')[:1]
 
 class ListCommandeAgent(generics.ListCreateAPIView):
     serializer_class = CommandeSerializer
