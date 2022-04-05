@@ -41,7 +41,7 @@ def signin_client(request):
             login(request,user)
             if 'next' in request.POST:
                 return redirect(request.POST.get('next'))
-            
+            return redirect("index")
     else:
         form = AuthenticationForm()
     return render(request, 'main/signinclient.html',{'form':form})
