@@ -69,7 +69,7 @@ class ListProduitAgent(generics.ListCreateAPIView):
         pour l'utilisateur actuellement authentifié.
         """
         user = self.request.user
-        return models.Produit.objects.filter(agent=user)
+        return models.Produit.objects.filter(agent=user)[0]
 
 class ListCommandeAgent(generics.ListCreateAPIView):
     serializer_class = CommandeSerializer
