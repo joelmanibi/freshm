@@ -23,7 +23,7 @@ def signup_client(request):
         userForm=forms.ClientUserForm(request.POST)
         clientForm=forms.ClientForm(request.POST,request.FILES)
         if userForm.is_valid() and clientForm.is_valid():
-            user=userForm.save()
+            user=userForm.save(commit=False)
             user.set_password(user.password)
             user.save()
             client=clientForm.save(commit=False)
