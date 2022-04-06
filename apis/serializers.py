@@ -26,16 +26,7 @@ class UserSerializer(serializers.ModelSerializer):
             )
         ]
 
-class ClientSerializer(serializers.ModelSerializer):
-    model = models.Client
-    class Meta:
-        fields = (
-            'user',
-            'Tel',
-            'ville',
-            'statut',
-            'image',
-        )
+
 
 class AgentSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404,reverse
 from . import forms
 from django.views.decorators.csrf import csrf_exempt
-from .models import Produit,Commande,Client
+from .models import Produit,Commande
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
@@ -17,18 +17,13 @@ from .forms import commandeForm,ProduitForm
 
 def signup_client(request):
     userForm=forms.ClientUserForm()
-    clientForm=forms.ClientForm()
-    mydict={'userForm':userForm,'clientForm':clientForm}
+    mydict={'userForm':userForm}
     if request.method=='POST':
         userForm=forms.ClientUserForm(request.POST)
-        clientForm=forms.ClientForm(request.POST,request.FILES)
-        if userForm.is_valid() and clientForm.is_valid():
+        if userForm.is_valid():
             user=userForm.save(commit=False)
             user.set_password(user.password)
             user.save()
-            client=clientForm.save(commit=False)
-            client.user=user
-            client.save()
         return HttpResponseRedirect("/")
     return render(request,'main/signupclient.html',context=mydict)
 
@@ -51,7 +46,7 @@ def logout_client(request):
         logout(request)
     return redirect("signinclient")
 
-@login_required(login_url='adminlogin')
+@login_required(login_url='')
 def signin_agent(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
@@ -83,9 +78,9 @@ def index(request):
 
 @login_required(login_url='signinclient')
 def menuDetail(request, pk):
-    if request.user.client:
+    if request.user:
         produit = Produit.objects.filter(id=pk).first()
-        panier_produits = Commande.objects.filter(client=request.user.client,statut=False)
+        panier_produits = Commande.objects.filter(client=request.user,statut=False)
         taille= len(panier_produits)
         context = {
             'produit' : produit,
@@ -103,7 +98,7 @@ def ajouter_au_panier(request, pk):
         Lieu_livraison = request.POST.get('Lieu_livraison')
         commande = Commande.objects.create(
         produit=produit,
-        client=request.user.client,
+        client=request.user,
         statut=False,
         quantite=quantite,
         Lieu_livraison=Lieu_livraison
@@ -113,7 +108,7 @@ def ajouter_au_panier(request, pk):
 
 @login_required(login_url='signinclient')
 def get_panier_produits(request):
-    panier_produits = Commande.objects.filter(client=request.user.client,statut=False)
+    panier_produits = Commande.objects.filter(client=request.user,statut=False)
     prix = panier_produits.aggregate(Sum('produit__prix'))
     qte = panier_produits.aggregate(Sum('quantite'))
     total = prix.get("produit__prix__sum")

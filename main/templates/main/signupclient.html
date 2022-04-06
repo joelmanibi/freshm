@@ -117,16 +117,14 @@ body {
     <body class="">
       <div class="login-page">
         <div class="form">
-          <form method="POST" class="login-form" action="{% url 'signupclient' %}">
+          <form method="POST" class="login-form" action="{% url 'signupclient' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <label><h5>INSCRIPTION client!</h5></label>
             {% render_field userForm.first_name class="input" placeholder="Nom" %}
             {% render_field userForm.last_name class="input" placeholder="Prenoms" %}
             {% render_field userForm.username class="input" placeholder="Pseudo" %}
             {% render_field userForm.password class="input" placeholder="Mot de passe" %}
-            {% render_field clientForm.ville class="input" placeholder="Address" %}
-            {% render_field clientForm.Tel class="input" placeholder="Mobile" %}
-            {% render_field clientForm.image class="input" placeholder="Image" %}
+            {% render_field userForm.password2 class="input" placeholder="confirme" %}
             <button type="submit">Crée un compte</button>
             <p class="message">Vous avez deja un compte? <a href="{% url 'signinclient' %}">Connectez vous!</a></p>
           </form>
