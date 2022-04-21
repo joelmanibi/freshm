@@ -24,7 +24,7 @@ class Produit(models.Model):
     description=models.TextField()
     lieu = models.CharField(max_length=40)
     image_produit= CloudinaryField('image')
-    agent = models.ForeignKey('auth.User', on_delete=models.CASCADE,null=True)
+    agent = models.ForeignKey('Agent', on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return self.Nom
