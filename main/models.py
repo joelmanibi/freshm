@@ -6,7 +6,6 @@ from cloudinary.models import CloudinaryField
 
 
 class Agent(models.Model):
-    
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     Tel = PhoneNumberField(blank=True)
     @property
@@ -20,8 +19,6 @@ class Agent(models.Model):
 
 
 class Produit(models.Model):
-
-    
     Nom=models.CharField(max_length=40)
     prix = models.IntegerField()
     description=models.TextField()

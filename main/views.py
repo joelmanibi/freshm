@@ -59,20 +59,21 @@ def signin_agent(request):
         form = AuthenticationForm()
     return render(request, 'main/signinagent.html',{'form':form})
 
-# @login_required(login_url='signinclient')
+@login_required(login_url='signinclient')
 def index(request):
-    panier_produits = Commande.objects.filter(statut=False)
+    panier_produits = Commande.objects.filter(client=request.user,ETAT='En cours')
+    cu_user = User.objects.filter(username=request.user)
     taille= len(panier_produits)
     query = request.GET.get('query')
     if query:
         produits = Produit.objects.filter(Nom__icontains=query)
-
     else:
         produits = Produit.objects.all()
     context = {
             'panier_produits':panier_produits,
             'taille':taille,
             'produits':produits,
+            'cu_user':cu_user
     }
     return render(request, 'main/index.html',context)
 

@@ -2,182 +2,6 @@
 {% load static %}
 {% load widget_tweaks %}
 
-<!-- <!DOCTYPE html>
-<html>
-    <head>
-        <title>FreshMaraicher</title>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
-        
-        <style>
-                    body {                      
-                      background:#f4f7f5;
-                      background-position: center;
-                      background-repeat: no-repeat;
-                      background-size: cover;
-                      font-family: "Roboto", sans-serif;
-                      -webkit-font-smoothing: antialiased;
-                      -moz-osx-font-smoothing: grayscale;
-                    }
-
-                    .panier{
-                      color:black;
-                    }
-          
-        </style>
-      </head>
-    <body >
-        <nav class="navbar navbar-expand-lg navbar-dark text-light bg-dark container-fluid">
-            <a class="navbar-brand" href="{% url 'index' %}">FreshMaraicher</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarText">
-              <ul class="navbar-nav mr-auto">
-
-                <li class="nav-item active">
-                  <a class="nav-link" href="https://veilletech.herokuapp.com">A propos <span class="sr-only">(current)</span></a>
-                </li>
-
-              </ul>
-              <form class="d-flex">
-                <button class="btn btn-outline-light" type="submit">
-                    <i class="bi-cart-fill me-1"></i>
-                    Produit
-                    <span class="badge bg-light text-black ms-1 rounded-pill panier" >{{taille}}</span>
-                </button>
-            </form>
-            </div>
-          </nav>
-
-        
-         
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">   
-
-            Indicators -->
-            <!-- <ul class="carousel-indicators">
-              <li data-target="#demo" data-slide-to="0" class="active"></li>
-              <li data-target="#demo" data-slide-to="1"></li>
-              <li data-target="#demo" data-slide-to="2"></li>
-            </ul> -->
-            
-            <!-- The slideshow -->
-            <!-- <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="{% static '/images/vegetables-790022.jpg' %}" alt="Los Angeles" width=100% height="500">
-                <div class="carousel-caption">
-                      <h3>LEGUMES UN</h3>
-                      <p>(legume 1)</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="{% static '/images/carrots-3440368.jpg' %}" alt="Chicago" width=100% height="500">
-                <div class="carousel-caption">
-                  <h3>LEGUMES DEUX</h3>
-                  <p>(legume 2)</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="{% static '/images/vegetables-1238252.jpg' %}" alt="New York" width=100% height="500">
-                <div class="carousel-caption">
-                  <h3>LEGUMES TROIS</h3>
-                  <p>(legume 3)</p>
-                </div>
-              </div>
-            </div>  -->
-            
-            <!-- Left and right controls -->
-            <!-- <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-              <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-              <span class="carousel-control-next-icon"></span>
-            </a>
-        </div>
-        
-        <div class="cart">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-9 mt-5">
-                        <h3 class="text-center">Votre Panier</h3>
-                        {% if panier_produits %}
-                        <div class="table-responsive">
-                            <table class="table table-light">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Prix/kg</th>
-                                    <th scope="col">Quantité</th>
-                                    <th scope="col">Prix total</th>
-                                    <th scope="col"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    {% for commande in panier_produits %}
-                                <tr>
-                                    <td>{{ commande.produit.Nom }} </td>
-                                    <td>{{ commande.produit.description|truncatechars:10 }}</td>
-                                    <td>{{ commande.produit.prix }}</td>
-                                    <td>{{ commande.quantite }}</td>
-                                    <td>{{ commande.prix_total }} FCFA</td>
-                                    <td><a class="btn btn-danger" href="{% url 'supprimé-du-panier' commande.id %}">Delete 😢</a></td>
-                                </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                        {% else %}
-                        <h4 class="text-center">Vous n'avez rien dans votre pannier 😢</h4>
-                        {% endif %}
-                    </div>
-                    <div class="col-sm-3 mt-5 mb-3">
-                        <div class="content-section">
-                            <h3 class="text-center">Bilan de votre commande</h3>
-                              <ul class="list-group">
-                                <li class="list-group-item list-group-item-light text-center text-dark">Total a payer: {{ total }}🤑</li>
-                                <li class="list-group-item list-group-item-light text-center text-dark">Quantité de Kg: {{ count }} Kg</li>
-                                <li class="list-group-item list-group-item-light text-center text-dark"><a class="btn btn-info text-dark" href="{% url 'commande' %}">Valider🤝</a></li>
-                                <li class="list-group-item list-group-item-light text-center"><a class="btn btn-warning text-dark" href="/">Continuer vos achats✌️</a></li>
-                              </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-      <!-- Footer-->
-      <!-- <footer class="py-5 bg-dark">
-        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; FreshMaraicher By JoelMani 2021</p></div>
-      </footer>
-
-    </body> -->
-
-    <!-- <script>
-                // Activate Carousel
-        $("#myCarousel").carousel();
-
-        // Enable Carousel Indicators
-        $(".item").click(function(){
-        $("#myCarousel").carousel(1);
-        });
-
-        // Enable Carousel Controls
-        $(".carousel-control-prev").click(function(){
-        $("#myCarousel").carousel("prev");
-        });
-    </script> -->
-    
-<!-- </html> -->
 
 <!DOCTYPE html>
 
@@ -231,7 +55,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="{% url 'index' %}"><img src="{% static '/images/log.png' %}" style="width: 250px;height: 200;"></a></h1>
+                        <h1><a href="{% url 'index' %}"><img src="{% static '/images/logg.png' %}" style="width: 250px;height: 200;"></a></h1>
                     </div>
                 </div>
                 
@@ -353,33 +177,6 @@
 
                             <div class="cart-collaterals">
 
-
-                            <!-- <div class="cross-sells">
-                                <h2>You may be interested in...</h2>
-                                <ul class="products">
-                                    <li class="product">
-                                        <a href="single-product.html">
-                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/product-2.jpg">
-                                            <h3>Ship Your Idea</h3>
-                                            <span class="price"><span class="amount">£20.00</span></span>
-                                        </a>
-
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>
-                                    </li>
-
-                                    <li class="product">
-                                        <a href="single-product.html">
-                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/product-4.jpg">
-                                            <h3>Ship Your Idea</h3>
-                                            <span class="price"><span class="amount">£20.00</span></span>
-                                        </a>
-
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>
-                                    </li>
-                                </ul>
-                            </div> -->
-
-
                             <div class="cart_totals ">
                                 <h2>Cart Totals</h2>
 
@@ -430,9 +227,13 @@
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
+
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2>Fresh<span>-marraicher</span></h2>
+                        <h2>Fresh<span>marraicher</span></h2>
+                        <p>
+                          Cette application de Marché assure aux agriculteurs les plus vulnérables de trouver des débouchés à leurs productions (offre de vente) et aux éventuels acheteurs de formuler leurs besoins (offre d’achat).
+                        </p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -441,39 +242,15 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-menu">
-                        <h2 class="footer-wid-title">Navigation </h2>
-                        <ul>
-                            <li><a href="">My account</a></li>
-                            <li><a href="">Order history</a></li>
-                            <li><a href="">Wishlist</a></li>
-                            <li><a href="">Vendor contact</a></li>
-                            <li><a href="">Front page</a></li>
-                        </ul>                        
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
-    
     <div class="footer-bottom-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; 2015 uCommerce. All Rights Reserved. <a href="http://www.freshdesignweb.com" target="_blank">freshDesignweb.com</a></p>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="footer-card-icon">
-                        <i class="fa fa-cc-discover"></i>
-                        <i class="fa fa-cc-mastercard"></i>
-                        <i class="fa fa-cc-paypal"></i>
-                        <i class="fa fa-cc-visa"></i>
+                       <p>&copy; 2022. All Tout droit Reservé. <a href="https://geeksp3.com/mani/joelmani-dev/" target="_blank">Joel_Mani_DEV</a></p>
                     </div>
                 </div>
             </div>
